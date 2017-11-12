@@ -16,4 +16,8 @@ class button{
     text=e;
     action=f;
   }
+  
+  void display(){
+    rect(pos.x,pos.y,size.x,size.y);
+  }
 }
