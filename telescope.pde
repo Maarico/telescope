@@ -36,11 +36,15 @@ void setup() {
     BLUE = new float[width*height]; // initialisation of arrays
   }
   
+  guicontrollers.add(new guicontroller(true,"main"));
+  getguibyID("main",guicontrollers).addbutton(new button(width/2,height/2,100,20,"test",""));
+  
 }
   
 
 
 void draw() {
+  background(255);
   if (cam.available() == true) {
     cam.read();
     cam.loadPixels();
@@ -50,4 +54,5 @@ void draw() {
 
   image(display, 0, 0);
   }catch(Exception e){println(e);}
+  displaygui(guicontrollers);
 }

@@ -27,6 +27,11 @@ class guicontroller {//parent class of all gui elements
     }
     return null;
   }
+
+
+  void addbutton(button a) {//method that adds a button to a guicontroller
+    buttons.add(a);
+  }
 }
 
 
@@ -45,9 +50,10 @@ class button {
   void display() {//display method for button class
     fill(255);
     stroke(0);
-    rect(pos.x, pos.y, size.x, size.y);
+    rect(pos.x-size.x/2, pos.y-size.y/2, size.x, size.y);
     textAlign(CENTER, CENTER);
-    text(text, lerp(pos.x, pos.x+size.x, 0.5), lerp(pos.y, pos.y+size.y, 0.5));
+    fill(0);
+    text(text, pos.x,pos.y);
   }
 
   button checkclicked() {//check if button was clicked
@@ -65,11 +71,18 @@ class text {
 
 
 
-guicontroller getguibyID(String id, ArrayList <guicontroller> list){//method to get a guicontroller by its id
-  for(int i=0;i<list.size();i++){
-    if(list.get(i).name==id){
+guicontroller getguibyID(String id, ArrayList <guicontroller> list) {//method to get a guicontroller by its id
+  for (int i=0; i<list.size(); i++) {
+    if (list.get(i).name==id) {
       return list.get(i);
     }
   }
   return null;
+}
+
+
+void displaygui(ArrayList <guicontroller> list){//method that displays all guicontrollers in a list
+  for(int i=0;i<list.size();i++){
+    list.get(i).display();
+  }
 }
