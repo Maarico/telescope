@@ -78,7 +78,6 @@ void draw() {
     thread("mousehold");
   }
   
-  fill(255);
   target.track();
   target.display();
 }
