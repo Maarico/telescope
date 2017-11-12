@@ -4,6 +4,8 @@ Capture cam; //the Object through wich to controll the camera
 
 PImage display; //the Image wich will be displayed at the end of draw
 
+float brightness=1;//multiplier for the final image
+
 String mode="longexposure"; //the mode the program is in right now
 
 int maximages = 100; //amount of images after wich images will be deleted if mode=longexposure
@@ -37,7 +39,12 @@ void setup() {
   }
   
   guicontrollers.add(new guicontroller(true,"main"));
-  getguibyID("main",guicontrollers).addbutton(new button(width/2,height/2,100,20,"test",""));
+  getguibyID("main",guicontrollers).addbutton(new button(70,50,100,20,"brightness +","bright +"));
+  getguibyID("main",guicontrollers).addbutton(new button(70,80,100,20,"brightness -","bright -"));
+  guicontrollers.add(new guicontroller(true,"longexposure"));
+  getguibyID("longexposure",guicontrollers).addbutton(new button(70,110,100,20,"images +","maxima +"));
+  getguibyID("longexposure",guicontrollers).addbutton(new button(70,140,100,20,"images -","maxima -"));
+  
   
 }
   

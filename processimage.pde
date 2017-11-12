@@ -20,7 +20,7 @@ PImage processimage() {
     PImage temp = new PImage(cam.width,cam.height);
     temp.loadPixels();
     for(int i=0;i<RED.length;i++){
-      temp.pixels[i]=color(RED[i],GREEN[i],BLUE[i]);//finalizing image to be returned
+      temp.pixels[i]=color(RED[i]*brightness,GREEN[i]*brightness,BLUE[i]*brightness);//finalizing image to be returned
     }
     temp.updatePixels();
     return temp;

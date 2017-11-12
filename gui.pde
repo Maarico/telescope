@@ -53,19 +53,30 @@ class button {
     rect(pos.x-size.x/2, pos.y-size.y/2, size.x, size.y);
     textAlign(CENTER, CENTER);
     fill(0);
-    text(text, pos.x,pos.y);
+    text(text, pos.x, pos.y);
   }
 
   button checkclicked() {//check if button was clicked
-    if (mouseX>pos.x&&mouseX<pos.x+size.y&&mouseY>pos.y&&mouseY<pos.y+size.y) {
+    if (mouseX>pos.x-size.x/2&&mouseX<pos.x+size.x/2&&mouseY>pos.y-size.y/2&&mouseY<pos.y+size.y/2) {
       return this;
     }
     return null;
   }
 }
 
-class text {
+class text {//text class
+  String text;
+  PVector pos;
+  text(String a, float b, float c) {
+    text=a;
+    pos=new PVector(b, c);
+  }
+
   void display() {
+    stroke(0);
+    textAlign(CENTER, CENTER);
+    fill(0);
+    text(text, pos.x, pos.y);
   }
 }
 
@@ -81,8 +92,17 @@ guicontroller getguibyID(String id, ArrayList <guicontroller> list) {//method to
 }
 
 
-void displaygui(ArrayList <guicontroller> list){//method that displays all guicontrollers in a list
-  for(int i=0;i<list.size();i++){
+void displaygui(ArrayList <guicontroller> list) {//method that displays all guicontrollers in a list
+  for (int i=0; i<list.size(); i++) {
     list.get(i).display();
   }
+}
+
+button getclickedbutton() {//method that gives the pressed button
+  for (int i=0; i<guicontrollers.size(); i++) {
+    if (guicontrollers.get(i).clickcheck()!=null) {
+      return guicontrollers.get(i).clickcheck();
+    }
+  }
+  return null;
 }
