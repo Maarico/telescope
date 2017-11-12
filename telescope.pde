@@ -17,7 +17,7 @@ float[] GREEN;
 float[] BLUE; // the 3 arrays in wich the long exposure is saved
 
 
-PVector target = new PVector(); //the tracking target
+tracker target = new tracker(200,200); //the tracking target
 int threshold=50;
 
 
@@ -78,5 +78,7 @@ void draw() {
     thread("mousehold");
   }
   
-  ellipse(target.x,target.y,10,10);
+  fill(255);
+  target.track();
+  target.display();
 }

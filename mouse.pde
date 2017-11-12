@@ -30,7 +30,7 @@ void mouseaction() {
       getguibyID("longexposure", guicontrollers).visible=true;
     }
   } else if (mode=="select tracking") {
-      target = new PVector(mouseX,mouseY);
+      target.newpos(mouseX,mouseY);
     }
 }
 
