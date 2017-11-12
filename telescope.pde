@@ -1,4 +1,3 @@
-
 import processing.video.*;
 
 Capture cam; //the Object through wich to controll the camera
@@ -14,6 +13,9 @@ ArrayList <PImage> cachedimages = new ArrayList(); //images wich are remembered 
 float[] RED;
 float[] GREEN;
 float[] BLUE; // the 3 arrays in wich the long exposure is saved
+
+
+ArrayList <guicontroller> guicontrollers = new ArrayList();
 
 
 void setup() {
