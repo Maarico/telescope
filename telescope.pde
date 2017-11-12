@@ -1,3 +1,4 @@
+
 import processing.video.*;
 
 Capture cam; //the Object through wich to controll the camera
