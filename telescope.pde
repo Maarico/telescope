@@ -66,4 +66,7 @@ void draw() {
   image(display, 0, 0);
   }catch(Exception e){println(e);}
   displaygui(guicontrollers);
+  if(mousePressed){
+    thread("mousehold");
+  }
 }
