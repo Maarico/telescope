@@ -18,6 +18,17 @@ class button{
   }
   
   void display(){
+    fill(255);
+    stroke(0);
     rect(pos.x,pos.y,size.x,size.y);
+    textAlign(CENTER, CENTER);
+    text(text,lerp(pos.x,pos.x+size.x,0.5),lerp(pos.y,pos.y+size.y,0.5));
+  }
+  
+  boolean checkclicked(){
+    if(mouseX>pos.x&&mouseX<pos.x+size.y&&mouseY>pos.y&&mouseY<pos.y+size.y){
+      return true;
+    }
+    return false;
   }
 }
