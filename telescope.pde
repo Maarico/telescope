@@ -38,12 +38,16 @@ void setup() {
     BLUE = new float[width*height]; // initialisation of arrays
   }
   
-  guicontrollers.add(new guicontroller(true,"main"));
+  guicontrollers.add(new guicontroller(true,"main"));//defining the main guicontroller
   getguibyID("main",guicontrollers).addbutton(new button(70,50,100,20,"brightness +","bright +"));
   getguibyID("main",guicontrollers).addbutton(new button(70,80,100,20,"brightness -","bright -"));
-  guicontrollers.add(new guicontroller(true,"longexposure"));
+  getguibyID("main",guicontrollers).addtext(new text("brightness","brightness="+brightness,150,65));
+  
+  
+  guicontrollers.add(new guicontroller(true,"longexposure"));//definging the guicontroller when on longexposure mode
   getguibyID("longexposure",guicontrollers).addbutton(new button(70,110,100,20,"images +","maxima +"));
   getguibyID("longexposure",guicontrollers).addbutton(new button(70,140,100,20,"images -","maxima -"));
+  getguibyID("longexposure",guicontrollers).addtext(new text("maximages","maximages="+maximages,150,125));
   
   
 }

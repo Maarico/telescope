@@ -32,6 +32,19 @@ class guicontroller {//parent class of all gui elements
   void addbutton(button a) {//method that adds a button to a guicontroller
     buttons.add(a);
   }
+  
+  void addtext(text a){//method that adds a text to a guicontroller
+    texts.add(a);
+  }
+  
+  text gettextbyid(String id){//method to get a text with a specific id
+    for(int i=0;i<texts.size();i++){
+      if(texts.get(i).id==id){
+        return texts.get(i);
+      }
+    }
+    return null;
+  }
 }
 
 
@@ -65,17 +78,18 @@ class button {
 }
 
 class text {//text class
-  String text;
+  String text,id;
   PVector pos;
-  text(String a, float b, float c) {
-    text=a;
-    pos=new PVector(b, c);
+  text(String a, String b, float c, float d) {
+    id=a;
+    text=b;
+    pos=new PVector(c, d);
   }
 
   void display() {
     stroke(0);
-    textAlign(CENTER, CENTER);
-    fill(0);
+    textAlign(LEFT, CENTER);
+    fill(200);
     text(text, pos.x, pos.y);
   }
 }
