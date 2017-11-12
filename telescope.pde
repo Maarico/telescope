@@ -17,6 +17,10 @@ float[] GREEN;
 float[] BLUE; // the 3 arrays in wich the long exposure is saved
 
 
+PVector target = new PVector(); //the tracking target
+int threshold=50;
+
+
 ArrayList <guicontroller> guicontrollers = new ArrayList();
 
 
@@ -37,21 +41,22 @@ void setup() {
     GREEN = new float[width*height];
     BLUE = new float[width*height]; // initialisation of arrays
   }
+
+  guicontrollers.add(new guicontroller(true, "main"));//defining the main guicontroller
+  getguibyID("main", guicontrollers).addbutton(new button(70, 50, 100, 20, "brightness +", "bright +"));
+  getguibyID("main", guicontrollers).addbutton(new button(70, 80, 100, 20, "brightness -", "bright -"));
+  getguibyID("main", guicontrollers).addbutton(new button(70, 110, 100, 20, "set tracker", "targetstart"));
+  getguibyID("main", guicontrollers).addtext(new text("brightness", "brightness="+brightness, 150, 65));
   
-  guicontrollers.add(new guicontroller(true,"main"));//defining the main guicontroller
-  getguibyID("main",guicontrollers).addbutton(new button(70,50,100,20,"brightness +","bright +"));
-  getguibyID("main",guicontrollers).addbutton(new button(70,80,100,20,"brightness -","bright -"));
-  getguibyID("main",guicontrollers).addtext(new text("brightness","brightness="+brightness,150,65));
-  
-  
-  guicontrollers.add(new guicontroller(true,"longexposure"));//definging the guicontroller when on longexposure mode
-  getguibyID("longexposure",guicontrollers).addbutton(new button(70,110,100,20,"images +","maxima +"));
-  getguibyID("longexposure",guicontrollers).addbutton(new button(70,140,100,20,"images -","maxima -"));
-  getguibyID("longexposure",guicontrollers).addtext(new text("maximages","maximages="+maximages,150,125));
-  
-  
+  guicontrollers.add(new guicontroller(false, "selecttracker"));
+  getguibyID("selecttracker",guicontrollers).addbutton(new button(70,50,100,20,"cancel tracking", "canceltrack"));
+
+  guicontrollers.add(new guicontroller(true, "longexposure"));//definging the guicontroller when on longexposure mode
+  getguibyID("longexposure", guicontrollers).addbutton(new button(70, 140, 100, 20, "images +", "maxima +"));
+  getguibyID("longexposure", guicontrollers).addbutton(new button(70, 170, 100, 20, "images -", "maxima -"));
+  getguibyID("longexposure", guicontrollers).addtext(new text("maximages", "maximages="+maximages, 150, 125));
 }
-  
+
 
 
 void draw() {
@@ -60,13 +65,18 @@ void draw() {
     cam.read();
     cam.loadPixels();
   }
-  try{
-  display = processimage();
+  try {
+    display = processimage();
 
-  image(display, 0, 0);
-  }catch(Exception e){println(e);}
+    image(display, 0, 0);
+  }
+  catch(Exception e) {
+    println(e);
+  }
   displaygui(guicontrollers);
-  if(mousePressed){
+  if (mousePressed) {
     thread("mousehold");
   }
+  
+  ellipse(target.x,target.y,10,10);
 }

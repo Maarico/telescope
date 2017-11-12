@@ -25,5 +25,15 @@ PImage processimage() {
     temp.updatePixels();
     return temp;
   }
+  if(mode=="select tracking"){
+    cam.loadPixels();
+    PImage temp=new PImage(cam.width,cam.height);
+    temp.loadPixels();
+    for(int i=0;i<cam.pixels.length;i++){
+      temp.pixels[i]=color(brightness(cam.pixels[i])*255);
+    }
+    temp.updatePixels();
+    return temp;
+  }
   return null;
 }

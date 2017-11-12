@@ -20,9 +20,11 @@ class guicontroller {//parent class of all gui elements
   }
 
   button clickcheck() {//method to check if a button was clicked
-    for (int i=0; i<buttons.size(); i++) {
-      if (buttons.get(i).checkclicked()!=null) {
-        return buttons.get(i).checkclicked();
+    if (visible) {
+      for (int i=0; i<buttons.size(); i++) {
+        if (buttons.get(i).checkclicked()!=null) {
+          return buttons.get(i).checkclicked();
+        }
       }
     }
     return null;
@@ -32,14 +34,14 @@ class guicontroller {//parent class of all gui elements
   void addbutton(button a) {//method that adds a button to a guicontroller
     buttons.add(a);
   }
-  
-  void addtext(text a){//method that adds a text to a guicontroller
+
+  void addtext(text a) {//method that adds a text to a guicontroller
     texts.add(a);
   }
-  
-  text gettextbyid(String id){//method to get a text with a specific id
-    for(int i=0;i<texts.size();i++){
-      if(texts.get(i).id==id){
+
+  text gettextbyid(String id) {//method to get a text with a specific id
+    for (int i=0; i<texts.size(); i++) {
+      if (texts.get(i).id==id) {
         return texts.get(i);
       }
     }
@@ -78,7 +80,7 @@ class button {
 }
 
 class text {//text class
-  String text,id;
+  String text, id;
   PVector pos;
   text(String a, String b, float c, float d) {
     id=a;
